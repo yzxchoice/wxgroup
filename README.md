@@ -7,3 +7,4 @@
 
 API
 node restful
+https://github.com/yzxchoice/wxapp-node.git
