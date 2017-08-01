@@ -19,15 +19,23 @@
 }
 .img-list {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   padding: 30rpx;
+  width: 550rpx;
 }
 
 .img-list image {
   width: 150rpx;
   height: 150rpx;
-  
+  margin: 4rpx;
 }
 .img-list text {
   margin-bottom: 30rpx;
+}
+.noresult {
+  padding: 30rpx;
+  text-align: center;
+  font-size: 14px;
+  color: #999999;
 }

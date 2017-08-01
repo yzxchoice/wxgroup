@@ -1,18 +1,19 @@
 <!--video.wxml-->
 <view class="container">
-<view class="img-add"></view>
-<view class="img-container" wx:for="{{imglist}}" wx:for-index="idx" wx:for-item="img">
-  <view class="h20"></view>
-  <view class="img-content">
-    <text class="img-date">{{img.addtime}}</text>
-    <text class="img-date">上传:{{img.username}}</text>
-    
-    
+  
+  <view class="img-container" wx:for="{{imglist}}" wx:for-index="idx" wx:for-item="img">
+    <view class="h20"></view>
+    <view class="img-content">
+      <text class="img-date">{{img.addtime}}</text>
+      <text class="img-date">上传:{{img.username}}</text>
+    </view>
+    <view class="img-list">
+      <video src="{{ prefix + img.video_path }}" data-name="{{img}}"></video>
+    </view>
   </view>
-
-  <view class="img-list">
-    <video src="{{ prefix + img.video_path }}" bindtap="showBig" data-name="{{img}}"></video>
-  </view>
+  
 </view>
+<view class="noresult" wx:if="{{noresult}}">
+  <text>没有更多动态</text>
 </view>
 

@@ -7,7 +7,10 @@ Page({
    */
   data: {
     imglist: [],
-    prefix: ''
+    prefix: '',
+    pageindex: 0,
+    noresult: false,
+    groupid: 0
   },
 
   /**
@@ -15,10 +18,12 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.groupid);
-    this.getImages(options.groupid)
+    
     this.setData({
-      prefix: util.config.prefix + 'videos/'
+      prefix: util.config.prefix + 'videos/',
+      groupid: options.groupid
     })
+    this.getImages(options.groupid, 0)
   },
 
   showBig: function (e) {
@@ -29,12 +34,13 @@ Page({
     // })
   },
 
-  getImages: function (groupid) {
+  getImages: function (groupid, pageindex) {
     var that = this;
     wx.request({
       url: util.config.prefix + 'group/getvideos',
       data: {
-        groupid: groupid
+        groupid: groupid,
+        pageindex: pageindex
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -42,8 +48,15 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res.data)
+        if (res.data.length < 10) {
+          that.setData({
+            noresult: true
+          })
+        }
+        pageindex++;
         that.setData({
-          imglist: res.data
+          imglist: that.data.imglist.concat(res.data),
+          pageindex: pageindex
         })
       }
     })
@@ -88,7 +101,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var that = this;
+    if (!that.data.noresult) {
+      that.getImages(that.data.groupid, that.data.pageindex)
+    }
   },
 
   /**

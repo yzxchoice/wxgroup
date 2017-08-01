@@ -74,12 +74,17 @@ Page({
   },
   showBig: function (e) {
     console.log(e.target.dataset.name);
+    var that = this;
     this.setData({
       ispreview: true
     })
     var img = e.target.dataset.name;
+    var temp = [];
+    img.imgpatharray.forEach(function(item){
+      temp.push(that.data.imgprefix + item)
+    })
     wx.previewImage({
-      urls: [this.data.imgprefix + img.img_path] // 需要预览的图片http链接列表
+      urls: temp // 需要预览的图片http链接列表
     })
   },
   getGroupDetail: function (groupid, pageindex) {
@@ -107,7 +112,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        if (res.data.activelist < 10){
+        if (res.data.activelist.length < 10){
           that.setData({
             noresult: true
           })
@@ -212,13 +217,15 @@ Page({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
         console.log(tempFilePaths[0]);
+        var filenum = tempFilePaths.length;
+        var fileindex = 1;
         wx.showToast({
           title: '上传中……',
           icon: 'loading',
           duration: 3000
         });
         wx.uploadFile({
-          url: util.config.prefix + 'group/addimage', 
+          url: util.config.prefix + 'group/addimage',
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
@@ -228,13 +235,41 @@ Page({
           },
           success: function (res) {
             var data = res.data
-            //do something
-            console.log(data);
-            that.hideButtonBar();
-            that.getGroupDetail(that.data.groupid, 0);
-            wx.hideToast();
+            if (filenum === 1){
+              that.hideButtonBar();
+              that.getGroupDetail(that.data.groupid, 0);
+              wx.hideToast();
+              return;
+            }
+            tempFilePaths.shift();
+            fileindex ++;
+            tempFilePaths.forEach(function (file, i) {
+              wx.uploadFile({
+                url: util.config.prefix + 'group/addimage',
+                filePath: file,
+                name: 'file',
+                formData: {
+                  'groupid': that.data.groupid,
+                  'openid': that.data.openid,
+                  'imgtoken': that.data.imgtoken
+                },
+                success: function (res) {
+                  var data = res.data
+                  console.log(data);
+                  fileindex++;
+                  that.hideButtonBar();
+                  if (fileindex >= filenum){
+                    that.getGroupDetail(that.data.groupid, 0);
+                  }
+                  
+                  wx.hideToast();
+                }
+              })
+            })
           }
         })
+        
+        
       }
     })
   },
@@ -351,7 +386,10 @@ Page({
   onReachBottom: function () {
     console.log('到底了');
     var that = this;
-    this.getGroupDetail(that.data.groupid, that.data.pageindex)
+    if (!that.data.noresult) {
+      that.getGroupDetail(that.data.groupid, that.data.pageindex)
+    }
+    
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

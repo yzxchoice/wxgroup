@@ -1,5 +1,7 @@
 /* video.wxss */
-
+.container {
+  padding-bottom: 0;
+}
 .img-container .img-date {
   color: #999999;
   font-size: 12px;
@@ -27,4 +29,10 @@
 .img-list text {
   margin-top: 30rpx;
   margin-bottom: 30rpx;
+}
+.noresult {
+  padding: 30rpx;
+  text-align: center;
+  font-size: 14px;
+  color: #999999;
 }

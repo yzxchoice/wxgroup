@@ -47,8 +47,11 @@
         </view>
         <view class="active-right">
           <text>{{item.username}}更新了相册</text>
-          <view class="active-content">
-            <image src="{{ imgprefix + item.img_path }}" bindtap="showBig" data-name="{{item}}"></image>
+          <view class="active-content album-content">
+            <view class="album-list">
+              <image wx:for="{{item.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ imgprefix + imgitem }}" bindtap="showBig" data-name="{{item}}"></image>
+            </view>
+            
           </view>
           <text class="active-time">{{item.addtime}}</text>
         </view>

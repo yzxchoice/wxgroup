@@ -178,9 +178,21 @@
 }
 .active-item .active-right .active-content {
   width: 550rpx;
-  height: 170rpx;
+  /* height: 170rpx; */
   background: #f2f2f2;
-  padding: 10rpx;
+  padding: 20rpx 10rpx; 
+}
+.active-item .active-right .active-content.album-content {
+  padding: 0;
+}
+
+.album-list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.album-list image {
+  margin: 4rpx;
 }
 
 .active-item .active-right .active-content.active-content-video {

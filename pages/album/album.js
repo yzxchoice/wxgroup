@@ -7,7 +7,10 @@ Page({
    */
   data: {
     imglist: [],
-    prefix: ''
+    prefix: '',
+    pageindex: 0,
+    noresult: false,
+    groupid: 0
   },
 
   /**
@@ -15,26 +18,34 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.groupid);
-    this.getImages(options.groupid)
     this.setData({
-      prefix: util.config.prefix + 'pic/'
+      prefix: util.config.prefix + 'pic/',
+      groupid: options.groupid
     })
+    this.getImages(options.groupid, 0)
+    
   },
 
   showBig: function(e){
     console.log(e.target.dataset.name);
+    var that = this;
     var img = e.target.dataset.name;
+    var temp = [];
+    img.imgpatharray.forEach(function (item) {
+      temp.push(that.data.prefix + item)
+    })
     wx.previewImage({
-      urls: [this.data.prefix + img.img_path] // 需要预览的图片http链接列表
+      urls: temp // 需要预览的图片http链接列表
     })
   },
 
-  getImages: function (groupid) {
+  getImages: function (groupid, pageindex) {
     var that = this;
     wx.request({
       url: util.config.prefix + 'group/getalbum',
       data: {
-        groupid: groupid
+        groupid: groupid,
+        pageindex: pageindex
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -42,12 +53,19 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res.data)
+        if (res.data.length < 10) {
+          that.setData({
+            noresult: true
+          })
+        }
+        pageindex++;
         var temp = res.data;
         temp.forEach(function(item){
           
         });
         that.setData({
-          imglist: res.data
+          imglist: that.data.imglist.concat(res.data),
+          pageindex: pageindex
         })
       }
     })
@@ -92,7 +110,11 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var that = this;
+    if (!that.data.noresult){
+      that.getImages(that.data.groupid, that.data.pageindex)
+    }
+    
   },
 
   /**
