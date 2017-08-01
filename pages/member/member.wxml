@@ -1,0 +1,7 @@
+<!--member.wxml-->
+<view class="img-list">
+  <view class="img-item" wx:for="{{group.member}}" wx:for-index="idx" wx:for-item="item">
+    <image src="{{item.image_path}}"></image>
+    <text>{{item.username}}</text>
+  </view>
+</view>

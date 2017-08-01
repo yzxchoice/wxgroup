@@ -1,0 +1,22 @@
+/* member.wxss */
+.img-list {
+  display: flex;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+  padding: 30rpx;
+  
+}
+.img-item {
+  width: 150rpx;
+  /* height: 150rpx; */
+  text-align: center;
+  margin: 11rpx;
+}
+.img-list image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 10rpx;
+}
+.img-list text {
+  font-size: 12px;
+}

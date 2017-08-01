@@ -1,0 +1,30 @@
+/* video.wxss */
+
+.img-container .img-date {
+  color: #999999;
+  font-size: 12px;
+}
+.img-content {
+  display: flex;
+  padding: 10rpx 30rpx 0;
+}
+.img-container .img-date {
+  margin-right: 30rpx;
+  color: #999999;
+  font-size: 12px;
+}
+.img-list {
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+}
+
+.img-list image {
+  width: 100rpx;
+  height: 100rpx;
+  
+}
+.img-list text {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}

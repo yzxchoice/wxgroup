@@ -1,0 +1,111 @@
+<!--group.wxml-->
+<view class="container">
+  <view class="group-container">
+    <image src="../../images/img.jpg"></image>
+  </view>
+  <view class="group-list">
+    <view class="group-item">
+      <view class="group-item-left">
+        <view class="group-icon" bindtap="showUsers">
+          <image src="../../images/logo.png"></image>
+          
+        </view>
+      </view>
+      <view class="group-item-title">
+        <text bindtap="showUsers">{{group.name}}</text>
+        <text class="group-member">成员数 {{group.member.length}}人</text> 
+      </view>
+      
+      <button class="invitebtn" open-type="share">邀请好友加入</button>
+    </view>
+  </view>
+  <view class="h20"></view>
+  <view class="group-nav">
+    <navigator url="../activelist/activelist?groupid={{group.id}}">
+      <view class="group-icon icon-location2"></view>
+      <text>活动</text>
+    </navigator>
+    <navigator url="../video/video?groupid={{group.id}}">
+      <view class="group-icon icon-file-video"></view>
+      <text>视频</text>
+    </navigator>
+    <navigator url="../album/album?groupid={{group.id}}">
+      <view class="group-icon icon-image"></view>
+      <text>相册</text>
+    </navigator>
+  </view>
+  <view class="h20"></view>
+  <view class="group-tip">
+     <text>最新动态</text> 
+      
+  </view> 
+  <view class="activelist">
+    <view wx:for="{{activelist}}" wx:for-index="idx" wx:for-item="item">
+      <view class="active-item" wx:if="{{item.img_path}}">
+        <view class="active-left">
+          <image wx:if="{{item.img_path}}" src="{{ item.user_image_path }}" data-name="{{item}}"></image>
+        </view>
+        <view class="active-right">
+          <text>{{item.username}}更新了相册</text>
+          <view class="active-content">
+            <image src="{{ imgprefix + item.img_path }}" bindtap="showBig" data-name="{{item}}"></image>
+          </view>
+          <text class="active-time">{{item.addtime}}</text>
+        </view>
+      </view>
+      <view class="active-item" wx:if="{{item.title}}">
+        <navigator url="../activedetail/activedetail?activeid={{item.id}}">
+          <view class="active-left">
+            <image src="{{ item.user_image_path }}" data-name="{{item}}"></image>
+          </view>
+          <view class="active-right">
+            <text>{{item.username}}发起了一个活动</text>
+            <view class="active-content">
+              <text>{{item.title}}</text>
+            </view>
+            <text class="active-time">{{item.addtime}}</text>
+          </view>
+        </navigator>
+      </view>
+      <view class="active-item" wx:if="{{item.video_path}}">
+        <view class="active-left">
+          <image src="{{ item.user_image_path }}" data-name="{{item}}"></image>
+        </view>
+        <view class="active-right">
+          <text>{{item.username}}更新了视频</text>
+          <view class="active-content active-content-video">
+            <video src="{{ videoprefix + item.video_path }}" bindtap="showBig" data-name="{{item}}"></video>
+          </view>
+          <text class="active-time">{{item.addtime}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="noresult" wx:if="{{noresult}}">
+      <text>没有更多动态</text>
+    </view>
+  </view>
+  <view class="mask" animation="{{animationData}}" wx:if="{{isMask}}" bindtap="hideMask"></view>
+  <view class="buttonbar" wx:if="{{showbar}}" animation="{{animationData}}">
+    <view class="group-nav">
+      <view class="group-nav-item" bindtap="addActive">
+        <view class="group-icon icon-location2"></view>
+        <text>发活动</text>
+      </view>
+      <view class="group-nav-item" bindtap="addVideo">
+        <view class="group-icon icon-file-video"></view>
+        <text>发视频</text>
+      </view>
+      <view class="group-nav-item" bindtap="addImage">
+        <view class="group-icon icon-image"></view>
+        <text>发图片</text>
+      </view>
+    </view>
+  </view>
+  <view class="group-bottom" bindtap="joinGroup" wx:if="{{!inGroup}}">
+    <text>加入群组</text>
+  </view>
+  <view class="group-bottom" bindtap="showBtnbar"  wx:else>
+    <text>发布新内容</text>
+  </view>
+  
+</view>

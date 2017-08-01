@@ -1,0 +1,30 @@
+<!--active.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section section_gap">
+    <input name="inputtitle" placeholder="活动标题" />
+  </view>
+  <view class="section section_gap">
+    <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+      <view class="picker">
+        日期: {{date}}
+      </view>
+    </picker>
+    <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+      <view class="picker">
+        时间: {{time}}
+      </view>
+    </picker>
+    <!-- <input name="input" placeholder="开始时间" /> -->
+  </view>
+  <view class="section section_gap">
+    <input name="inputaddress" value="{{address}}" placeholder="活动地点" bindfocus="chooseLocation" />
+  </view>
+  <view class="section section_gap">
+    <textarea maxlength="-1" name="inputdes" placeholder="活动介绍" />
+  </view>
+
+
+    <button formType="submit" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="primary"> 发布活动 </button>
+
+</form>

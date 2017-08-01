@@ -1,0 +1,17 @@
+<!--album.wxml-->
+<view class="container">
+<view class="img-add"></view>
+<view class="img-container" wx:for="{{imglist}}" wx:for-index="idx" wx:for-item="img">
+  <view class="h20"></view>
+  <view class="img-content">
+    <text class="img-date">{{img.addtime}}</text>
+    <text class="img-date">上传:{{img.username}}</text>
+    
+  </view>
+  <view class="img-list">
+      <image src="{{ prefix + img.img_path }}" bindtap="showBig" data-name="{{img}}"></image>
+      
+    </view>
+  
+</view>
+</view>

@@ -1,0 +1,23 @@
+/* activelist.wxss */
+.group-item navigator{
+  padding: 30rpx;
+  border-top: 1rpx solid #cccccc;
+  border-bottom: 1rpx solid #cccccc;
+}
+.group-item .left-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-weight: 800;
+}
+.active-date {
+  font-size: 14px;
+}
+
+.group-item .group-item-bottom {
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  border-top: 1rpx solid #f2f2f2;
+  font-size: 14px;
+}

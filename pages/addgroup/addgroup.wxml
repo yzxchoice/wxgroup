@@ -1,0 +1,23 @@
+<!--addgroup.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="section section_gap">
+    <input name="input" placeholder="群组名称" />
+  </view>
+
+    <text>
+      群组创建后，您将会是这个群的群主。
+    </text>
+
+  
+
+
+    <button formType="submit" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}"> 确定 </button>
+    
+
+
+    <button type="default" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="goback"> 取消 </button>
+    
+
+</form>

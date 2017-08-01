@@ -1,0 +1,23 @@
+<!--activedetail.wxml-->
+<view class="group-list">
+  <view class="group-item">
+    <view class="left-wrap">
+      <text class="active-title">{{active.title}}</text>
+      <view class="active-content">
+        <text class="active-item">活动时间 </text><text> {{active.time}}</text>
+      </view>
+      <view class="active-content">
+        <text class="active-item">活动地点 </text><text> {{active.address}}</text>
+      </view>
+      
+        <text class="active-item">活动介绍 </text><text> {{active.description}}</text>
+      
+    </view>
+    <view class="group-item-bottom">
+      <text class="active-item">发布人</text> {{active.username}}
+    </view>
+    
+  </view>
+  
+</view>
+<button open-type="share"> 分享给朋友 </button>

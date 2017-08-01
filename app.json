@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/group/group",
+    "pages/active/active",
+    "pages/activelist/activelist",
+    "pages/album/album",
+    "pages/video/video",
+    "pages/addgroup/addgroup",
+    "pages/activedetail/activedetail",
+    "pages/member/member"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "群组",
+    "navigationBarTextStyle": "white"
+  }
+}

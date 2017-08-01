@@ -1,0 +1,31 @@
+/* activedetail.wxss */
+.group-item {
+  margin: 30rpx 0;
+  padding: 30rpx;
+  border-top: 1rpx solid #cccccc;
+  border-bottom: 1rpx solid #cccccc;
+}
+.group-item .left-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.group-item .group-item-bottom {
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  border-top: 1rpx solid #cccccc;
+}
+
+button {
+  margin: 20rpx;
+}
+.active-item {
+  color: #999999;
+  width: 200rpx;
+}
+.active-title {
+  font-weight: 800;
+}
+.active-content {
+  display: flex;
+}
