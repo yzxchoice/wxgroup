@@ -142,6 +142,7 @@
 }
 .buttonbar {
   position: fixed;
+  z-index: 99999;
   bottom: 100rpx;
   left: 0;
   opacity:0;

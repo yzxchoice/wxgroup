@@ -87,6 +87,18 @@ Page({
       urls: temp // 需要预览的图片http链接列表
     })
   },
+
+  showSingleBig: function (e) {
+    console.log(e.target.dataset.name);
+    var that = this;
+    this.setData({
+      ispreview: true
+    })
+    var img = e.target.dataset.name;
+    wx.previewImage({
+      urls: [that.data.imgprefix + img.img_path] // 需要预览的图片http链接列表
+    })
+  },
   getGroupDetail: function (groupid, pageindex) {
     var that = this;
     
@@ -398,6 +410,7 @@ Page({
     console.log('下拉动作');
     var that = this;
     //下拉刷新数据
-    // that.getGroupDetail(that.data.groupid, 0);
+    that.getGroupDetail(that.data.groupid, 0);
+    // "enablePullDownRefresh": true
   }
 })
