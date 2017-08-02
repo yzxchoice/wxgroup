@@ -38,6 +38,14 @@ Page({
       urls: temp // 需要预览的图片http链接列表
     })
   },
+  showSingleBig: function (e) {
+    console.log(e.target.dataset.name);
+    var that = this;
+    var img = e.target.dataset.name;
+    wx.previewImage({
+      urls: [that.data.prefix + img.img_path] // 需要预览的图片http链接列表
+    })
+  },
 
   getImages: function (groupid, pageindex) {
     var that = this;

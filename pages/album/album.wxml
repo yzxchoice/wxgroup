@@ -8,8 +8,11 @@
       <text class="img-date">上传:{{img.username}}</text>
       
     </view>
-    <view class="img-list">
+    <view class="img-list" wx:if="{{img.imgpatharray}}">
         <image wx:for="{{img.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ prefix + imgitem }}" bindtap="showBig" data-name="{{img}}"></image>    
+    </view>
+    <view class="img-list" wx:else>
+      <image src="{{ prefix + img.img_path }}" bindtap="showSingleBig" data-name="{{img}}"></image>
     </view>
     
   </view>

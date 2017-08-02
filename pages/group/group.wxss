@@ -180,7 +180,7 @@
   width: 550rpx;
   /* height: 170rpx; */
   background: #f2f2f2;
-  padding: 20rpx 10rpx; 
+  padding: 20rpx; 
 }
 .active-item .active-right .active-content.album-content {
   padding: 0;
