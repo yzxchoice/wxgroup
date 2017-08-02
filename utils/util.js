@@ -17,11 +17,8 @@ function formatNumber(n) {
 }
 
 var config = {
-  // prefix: "http://182.254.242.48/project/",
   prefix: "https://online.yueyinyuemei.com/project/",
-  // prefix: "http://localhost:8002/",
-  // prefix: 'http://192.168.12.7:8002/',
-  // prefix1: "https://www.17english.com/haozuowenapi/"
+  // prefix: "http://localhost:8002/"
 }
 
 module.exports = {
