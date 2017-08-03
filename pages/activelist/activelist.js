@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    activelist: []
+    activelist: [],
+    groupid: 0,
+    openid: '',
+    noresult: false
   },
 
   /**
@@ -14,7 +17,11 @@ Page({
    */
   onLoad: function (options) {
     console.log(options.groupid);
+    this.setData({
+      groupid: options.groupid
+    })
     this.getActives(options.groupid)
+    this.getGroupDetail(options.groupid, 0);
   },
 
   getActives: function (groupid) {
@@ -30,8 +37,58 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res.data)
+        if (res.data.length < 10) {
+          that.setData({
+            noresult: true
+          })
+        }
         that.setData({
           activelist: res.data
+        })
+      }
+    })
+  },
+
+  addActive: function (e) {
+    wx.navigateTo({
+      url: '../active/active?groupid=' + this.data.groupid
+    })
+  },
+
+  getGroupDetail: function (groupid, pageindex) {
+    var that = this;
+
+    wx.request({
+      url: util.config.prefix + 'group/getgroupdetail',
+      data: {
+        groupid: groupid,
+        pageindex: pageindex
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET',
+      success: function (res) {
+
+        wx.getStorage({
+          key: 'openid',
+          success: function (store) {
+            console.log(store.data)
+            that.setData({
+              openid: store.data
+            })
+
+            var m = false;
+            res.data.member.forEach(function (item) {
+              if (item.open_id === store.data) {
+                m = true
+              }
+            })
+            console.log(m);
+            that.setData({
+              inGroup: m
+            })
+          }
         })
       }
     })

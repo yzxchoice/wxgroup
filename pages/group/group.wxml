@@ -49,10 +49,10 @@
           <text>{{item.username}}更新了相册</text>
           <view class="active-content album-content">
             <view class="album-list" wx:if="{{item.imgpatharray}}">
-              <image wx:for="{{item.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ imgprefix + imgitem }}" bindtap="showBig" data-name="{{item}}"></image>
+              <image mode="aspectFill" wx:for="{{item.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ imgprefix + imgitem }}" bindtap="showBig" data-name="{{item}}"></image>
             </view>
             <view class="img-list" wx:else>
-              <image src="{{ imgprefix + item.img_path }}" bindtap="showSingleBig" data-name="{{item}}"></image>
+              <image mode="aspectFill" src="{{ imgprefix + item.img_path }}" bindtap="showSingleBig" data-name="{{item}}"></image>
             </view>
           </view>
           <text class="active-time">{{item.addtime}}</text>
@@ -79,7 +79,7 @@
         <view class="active-right">
           <text>{{item.username}}更新了视频</text>
           <view class="active-content active-content-video">
-            <video src="{{ videoprefix + item.video_path }}" bindtap="showBig" data-name="{{item}}"></video>
+            <video binderror="listenerVideo" src="{{ videoprefix + item.video_path }}" data-name="{{item}}"></video>
           </view>
           <text class="active-time">{{item.addtime}}</text>
         </view>

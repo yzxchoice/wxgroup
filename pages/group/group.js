@@ -54,7 +54,7 @@ Page({
     })
     this.setData({
       imgprefix: util.config.prefix + 'pic/',
-      videoprefix: util.config.prefix + 'videos/',
+      videoprefix: util.config.videoprefix + 'videos/',
     })
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
@@ -98,6 +98,12 @@ Page({
     wx.previewImage({
       urls: [that.data.imgprefix + img.img_path] // 需要预览的图片http链接列表
     })
+  },
+  /**
+   * 监听视频加载错误状态
+   */
+  listenerVideo: function (e) {
+    console.log(e.detail.errMsg);
   },
   getGroupDetail: function (groupid, pageindex) {
     var that = this;

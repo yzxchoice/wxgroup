@@ -10,7 +10,10 @@ Page({
     prefix: '',
     pageindex: 0,
     noresult: false,
-    groupid: 0
+    groupid: 0,
+    inGroup: false,
+    openid: '',
+    imgtoken: ''
   },
 
   /**
@@ -23,6 +26,7 @@ Page({
       groupid: options.groupid
     })
     this.getImages(options.groupid, 0)
+    this.getGroupDetail(options.groupid, 0);
     
   },
 
@@ -49,6 +53,11 @@ Page({
 
   getImages: function (groupid, pageindex) {
     var that = this;
+    if (pageindex === 0) {
+      that.setData({
+        imglist: []
+      })
+    }
     wx.request({
       url: util.config.prefix + 'group/getalbum',
       data: {
@@ -67,14 +76,114 @@ Page({
           })
         }
         pageindex++;
-        var temp = res.data;
-        temp.forEach(function(item){
-          
-        });
+        
         that.setData({
           imglist: that.data.imglist.concat(res.data),
           pageindex: pageindex
         })
+      }
+    })
+  },
+
+  getGroupDetail: function (groupid, pageindex) {
+    var that = this;
+
+    wx.request({
+      url: util.config.prefix + 'group/getgroupdetail',
+      data: {
+        groupid: groupid,
+        pageindex: pageindex
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET',
+      success: function (res) {
+
+        wx.getStorage({
+          key: 'openid',
+          success: function (store) {
+            console.log(store.data)
+            that.setData({
+              openid: store.data
+            })
+
+            var m = false;
+            res.data.member.forEach(function (item) {
+              if (item.open_id === store.data) {
+                m = true
+              }
+            })
+            console.log(m);
+            that.setData({
+              inGroup: m
+            })
+          }
+        })
+      }
+    })
+  },
+  addImage: function (e) {
+    var that = this;
+    var imgtoken = that.data.openid + Date.parse(new Date()) / 1000;
+    this.setData({
+      imgtoken: imgtoken
+    })
+    wx.chooseImage({
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths
+        console.log(tempFilePaths[0]);
+        var filenum = tempFilePaths.length;
+        var fileindex = 1;
+        wx.showToast({
+          title: '上传中……',
+          icon: 'loading',
+          duration: 3000
+        });
+        wx.uploadFile({
+          url: util.config.prefix + 'group/addimage',
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            'groupid': that.data.groupid,
+            'openid': that.data.openid,
+            'imgtoken': that.data.imgtoken
+          },
+          success: function (res) {
+            var data = res.data
+            if (filenum === 1) {
+              that.getImages(that.data.groupid, 0)
+              wx.hideToast();
+              return;
+            }
+            tempFilePaths.shift();
+            fileindex++;
+            tempFilePaths.forEach(function (file, i) {
+              wx.uploadFile({
+                url: util.config.prefix + 'group/addimage',
+                filePath: file,
+                name: 'file',
+                formData: {
+                  'groupid': that.data.groupid,
+                  'openid': that.data.openid,
+                  'imgtoken': that.data.imgtoken
+                },
+                success: function (res) {
+                  var data = res.data
+                  console.log(data);
+                  fileindex++;
+                  if (fileindex >= filenum) {
+                    that.getImages(that.data.groupid, 0)
+                  }
+
+                  wx.hideToast();
+                }
+              })
+            })
+          }
+        })
+
+
       }
     })
   },

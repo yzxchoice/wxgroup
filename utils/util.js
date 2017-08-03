@@ -17,6 +17,7 @@ function formatNumber(n) {
 }
 
 var config = {
+  videoprefix: "http://182.254.242.48/project/",
   prefix: "https://online.yueyinyuemei.com/project/",
   // prefix: "http://localhost:8002/"
 }

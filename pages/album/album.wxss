@@ -1,7 +1,5 @@
 /* album.wxss */
-.container {
-  padding-bottom: 0;
-}
+
 .img-container {
   width: 100%;
   
@@ -38,4 +36,20 @@
   text-align: center;
   font-size: 14px;
   color: #999999;
+}
+
+
+.group-bottom {
+  position: fixed;
+   z-index: 999999999999; 
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 750rpx;
+  height: 100rpx;
+  border-top: 1rpx solid #cccccc;
+  line-height: 100rpx;
+  text-align: center;
+}
+.group-bottom text {
+  width: 500rpx;
 }

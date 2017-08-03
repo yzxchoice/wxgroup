@@ -9,14 +9,21 @@
       
     </view>
     <view class="img-list" wx:if="{{img.imgpatharray}}">
-        <image wx:for="{{img.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ prefix + imgitem }}" bindtap="showBig" data-name="{{img}}"></image>    
+        <image mode="aspectFill" wx:for="{{img.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ prefix + imgitem }}" bindtap="showBig" data-name="{{img}}"></image>    
     </view>
     <view class="img-list" wx:else>
-      <image src="{{ prefix + img.img_path }}" bindtap="showSingleBig" data-name="{{img}}"></image>
+      <image mode="aspectFill" src="{{ prefix + img.img_path }}" bindtap="showSingleBig" data-name="{{img}}"></image>
     </view>
     
   </view>
   <view class="noresult" wx:if="{{noresult}}">
-    <text>没有更多动态</text>
+    <text>没有更多图片</text>
+  </view>
+
+  <view class="group-bottom" bindtap="joinGroup" wx:if="{{!inGroup}}">
+    <text>加入群组</text>
+  </view>
+  <view class="group-bottom" bindtap="addImage"  wx:else>
+    <text>发布新图片</text>
   </view>
 </view>

@@ -1,4 +1,5 @@
 /* activelist.wxss */
+
 .group-item navigator{
   padding: 30rpx;
   border-top: 1rpx solid #cccccc;
@@ -20,4 +21,25 @@
   padding-top: 30rpx;
   border-top: 1rpx solid #f2f2f2;
   font-size: 14px;
+}
+
+.group-bottom {
+  position: fixed;
+   z-index: 999999999999; 
+  bottom: 0rpx;
+  left: 0rpx;
+  width: 750rpx;
+  height: 100rpx;
+  border-top: 1rpx solid #cccccc;
+  line-height: 100rpx;
+  text-align: center;
+}
+.group-bottom text {
+  width: 500rpx;
+}
+.noresult {
+  padding: 30rpx;
+  text-align: center;
+  font-size: 14px;
+  color: #999999;
 }

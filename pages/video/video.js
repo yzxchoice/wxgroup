@@ -10,7 +10,9 @@ Page({
     prefix: '',
     pageindex: 0,
     noresult: false,
-    groupid: 0
+    groupid: 0,
+    inGroup: false,
+    openid: ''
   },
 
   /**
@@ -20,10 +22,11 @@ Page({
     console.log(options.groupid);
     
     this.setData({
-      prefix: util.config.prefix + 'videos/',
+      prefix: util.config.videoprefix + 'videos/',
       groupid: options.groupid
     })
     this.getImages(options.groupid, 0)
+    this.getGroupDetail(options.groupid, 0);
   },
 
   showBig: function (e) {
@@ -36,6 +39,11 @@ Page({
 
   getImages: function (groupid, pageindex) {
     var that = this;
+    if (pageindex === 0) {
+      that.setData({
+        imglist: []
+      })
+    }
     wx.request({
       url: util.config.prefix + 'group/getvideos',
       data: {
@@ -57,6 +65,79 @@ Page({
         that.setData({
           imglist: that.data.imglist.concat(res.data),
           pageindex: pageindex
+        })
+      }
+    })
+  },
+
+  getGroupDetail: function (groupid, pageindex) {
+    var that = this;
+
+    wx.request({
+      url: util.config.prefix + 'group/getgroupdetail',
+      data: {
+        groupid: groupid,
+        pageindex: pageindex
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'GET',
+      success: function (res) {
+
+        wx.getStorage({
+          key: 'openid',
+          success: function (store) {
+            console.log(store.data)
+            that.setData({
+              openid: store.data
+            })
+
+            var m = false;
+            res.data.member.forEach(function (item) {
+              if (item.open_id === store.data) {
+                m = true
+              }
+            })
+            console.log(m);
+            that.setData({
+              inGroup: m
+            })
+          }
+        })
+      }
+    })
+  },
+
+  addVideo: function (e) {
+    var that = this;
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: function (res) {
+        var tempFilePath = res.tempFilePath
+        console.log(tempFilePath);
+        wx.showToast({
+          title: '上传中……',
+          icon: 'loading',
+          duration: 3000
+        });
+        wx.uploadFile({
+          url: util.config.prefix + 'group/addvideo',
+          filePath: tempFilePath,
+          name: 'file',
+          formData: {
+            'groupid': that.data.groupid,
+            'openid': that.data.openid
+          },
+          success: function (res) {
+            var data = res.data
+            //do something
+            console.log(data);
+            that.getImages(that.data.groupid, 0)
+            wx.hideToast();
+          }
         })
       }
     })

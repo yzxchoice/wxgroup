@@ -1,19 +1,28 @@
 <!--activelist.wxml-->
-
-<view class="group-list">
-  <view class="group-item" wx:for="{{activelist}}" wx:for-index="idx" wx:for-item="active">
-    <view class="h20"></view>
-    <navigator url="../activedetail/activedetail?activeid={{active.id}}">
-      <view class="left-wrap">
-        <text class="title">{{active.title}}</text>
-        <text class="active-date">时间 {{active.time}}</text>
-        <text class="active-date">地点 {{active.address}}</text>
-      </view>
-      <view class="group-item-bottom">
-        发布人 {{active.username}}
-      </view>
-    </navigator>
+<view class="container">
+  <view class="group-list">
+    <view class="group-item" wx:for="{{activelist}}" wx:for-index="idx" wx:for-item="active">
+      <view class="h20"></view>
+      <navigator url="../activedetail/activedetail?activeid={{active.id}}">
+        <view class="left-wrap">
+          <text class="title">{{active.title}}</text>
+          <text class="active-date">时间 {{active.time}}</text>
+          <text class="active-date">地点 {{active.address}}</text>
+        </view>
+        <view class="group-item-bottom">
+          发布人 {{active.username}}
+        </view>
+      </navigator>
+    </view>
   </view>
+  <view class="noresult" wx:if="{{noresult}}">
+    <text>没有更多活动</text>
+  </view>
+  <view class="group-bottom" bindtap="joinGroup" wx:if="{{!inGroup}}">
+    <text>加入群组</text>
+  </view>
+  <view class="group-bottom" bindtap="addActive"  wx:else>
+    <text>发活动</text>
+  </view>
+
 </view>
-
-
