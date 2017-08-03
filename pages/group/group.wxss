@@ -111,7 +111,7 @@
 }
 .group-bottom {
   position: fixed;
-   z-index: 999999999999; 
+   z-index: 999; 
   bottom: 0rpx;
   left: 0rpx;
   width: 750rpx;
@@ -213,4 +213,9 @@
 .active-time {
   font-size: 12px;
   color: #999999
+}
+.canvas-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }

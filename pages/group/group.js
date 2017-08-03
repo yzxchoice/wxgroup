@@ -1,5 +1,8 @@
 var util = require('../../utils/util.js')
+// var wezrender = require('../../lib/wezrender.min');
+// var zr
 var app = getApp()
+
 Page({
   data: {
     loading: false,
@@ -418,5 +421,22 @@ Page({
     //下拉刷新数据
     that.getGroupDetail(that.data.groupid, 0);
     // "enablePullDownRefresh": true
+  },
+
+  onReady: function (e) {
+    // zr = wezrender.zrender.init("rect-canvas-1", 375, 600);
+
+    // var barShape = new wezrender.graphic.shape.Rect({
+    //   shape: {
+    //     x: 0,
+    //     y: 0,
+    //     width: 375,
+    //     height: 600
+    //   },
+    //   style: {
+    //     fill: 'rgb(0, 0, 180)'
+    //   }
+    // });
+    // zr.add(barShape);
   }
 })

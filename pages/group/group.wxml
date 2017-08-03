@@ -37,7 +37,6 @@
   <view class="h20"></view>
   <view class="group-tip">
      <text>最新动态</text> 
-      
   </view> 
   <view class="activelist">
     <view wx:for="{{activelist}}" wx:for-index="idx" wx:for-item="item">
@@ -69,6 +68,10 @@
               <text>{{item.title}}</text>
             </view>
             <text class="active-time">{{item.addtime}}</text>
+            <view class="classname">
+              <text class="active-time">{{item.address}}</text>
+            </view>
+            
           </view>
         </navigator>
       </view>
@@ -112,5 +115,5 @@
   <view class="group-bottom" bindtap="showBtnbar"  wx:else>
     <text>发布新内容</text>
   </view>
-  
+  <!-- <canvas style="width: 375px; height: 600px;" canvas-id="rect-canvas-1"></canvas> -->
 </view>
