@@ -177,6 +177,15 @@
 .active-item .active-right {
   width: 600rpx;
 }
+.active-item .active-right .tip-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.active-item .active-right .tip-content text:nth-child(2) {
+  font-size: 12px;
+  color: #ccc;
+}
 .active-item .active-right .active-content {
   width: 550rpx;
   /* height: 170rpx; */
@@ -218,4 +227,10 @@
   position: fixed;
   bottom: 0;
   left: 0;
+}
+.canvas-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999999;
 }

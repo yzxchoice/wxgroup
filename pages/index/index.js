@@ -35,6 +35,10 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res.data)
+        wx.setStorage({
+          key: "userid",
+          data: res.data.userDetail.id
+        })
       }
     })
   },

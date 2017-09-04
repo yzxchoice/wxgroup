@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a092c3a-acb3-4a2d-ac19-17e19d8d6353" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/album/album.wxss" afterPath="$PROJECT_DIR$/pages/album/album.wxss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/activelist/activelist.js" afterPath="$PROJECT_DIR$/pages/activelist/activelist.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/video/video.wxml" afterPath="$PROJECT_DIR$/pages/video/video.wxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/group/group.js" afterPath="$PROJECT_DIR$/pages/group/group.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/activelist/activelist.wxml" afterPath="$PROJECT_DIR$/pages/activelist/activelist.wxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/album/album.wxml" afterPath="$PROJECT_DIR$/pages/album/album.wxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/group/group.wxml" afterPath="$PROJECT_DIR$/pages/group/group.wxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/video/video.wxss" afterPath="$PROJECT_DIR$/pages/video/video.wxss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/video/video.js" afterPath="$PROJECT_DIR$/pages/video/video.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/util.js" afterPath="$PROJECT_DIR$/utils/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/album/album.js" afterPath="$PROJECT_DIR$/pages/album/album.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/activelist/activelist.wxss" afterPath="$PROJECT_DIR$/pages/activelist/activelist.wxss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,8 +33,8 @@
       <file leaf-file-name="group.wxml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/group/group.wxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="650">
-              <caret line="56" column="17" lean-forward="false" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+            <state relative-caret-position="625">
+              <caret line="55" column="17" lean-forward="true" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -250,11 +237,12 @@
       <option name="presentableId" value="Default" />
       <updated>1501726798210</updated>
       <workItem from="1501726799613" duration="767000" />
+      <workItem from="1501837553621" duration="626000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="767000" />
+    <option name="totallyTimeSpent" value="1393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -266,7 +254,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -316,8 +304,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/group/group.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="56" column="17" lean-forward="false" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+        <state relative-caret-position="625">
+          <caret line="55" column="17" lean-forward="true" selection-start-line="55" selection-start-column="17" selection-end-line="55" selection-end-column="17" />
           <folding />
         </state>
       </provider>

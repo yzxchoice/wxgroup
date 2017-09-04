@@ -16,7 +16,7 @@
         <text class="group-member">成员数 {{group.member.length}}人</text> 
       </view>
       
-      <button class="invitebtn" open-type="share">邀请好友加入</button>
+      <button class="invitebtn" open-type="share">邀请好友</button>
     </view>
   </view>
   <view class="h20"></view>
@@ -45,7 +45,11 @@
           <image wx:if="{{item.img_path}}" src="{{ item.user_image_path }}" data-name="{{item}}"></image>
         </view>
         <view class="active-right">
-          <text>{{item.username}}更新了相册</text>
+          <view class='tip-content'>
+            <text>{{item.username}}更新了相册</text>
+            <text bindtap="delImage" data-name="{{item}}" data-index="{{idx}}" wx:if="{{item.userid == userid}}">删除照片</text>
+          </view>
+          
           <view class="active-content album-content">
             <view class="album-list" wx:if="{{item.imgpatharray}}">
               <image mode="aspectFill" wx:for="{{item.imgpatharray}}" wx:for-index="imgidx" wx:for-item="imgitem" src="{{ imgprefix + imgitem }}" bindtap="showBig" data-name="{{item}}"></image>
@@ -58,29 +62,39 @@
         </view>
       </view>
       <view class="active-item" wx:if="{{item.title}}">
-        <navigator url="../activedetail/activedetail?activeid={{item.id}}">
+        <!-- <navigator url="../activedetail/activedetail?activeid={{item.id}}"> -->
           <view class="active-left">
             <image src="{{ item.user_image_path }}" data-name="{{item}}"></image>
           </view>
           <view class="active-right">
-            <text>{{item.username}}发起了一个活动</text>
-            <view class="active-content">
-              <text>{{item.title}}</text>
+            <view class='tip-content'>
+              <text>{{item.username}}发起了一个活动</text>
+              <text bindtap="delActive" data-name="{{item}}" data-index="{{idx}}" wx:if="{{item.userid == userid}}">删除活动</text>
             </view>
-            <text class="active-time">{{item.addtime}}</text>
-            <view class="classname">
-              <text class="active-time">{{item.address}}</text>
+            <view bindtap="goActive" data-name="{{item}}">
+              <view class="active-content">
+                <text>{{item.title}}</text>
+              </view>
+              <text class="active-time">{{item.addtime}}</text>
+              <view class="classname">
+                <text class="active-time">{{item.address}}</text>
+              </view>
             </view>
             
+            
           </view>
-        </navigator>
+        <!-- </navigator> -->
       </view>
       <view class="active-item" wx:if="{{item.video_path}}">
         <view class="active-left">
           <image src="{{ item.user_image_path }}" data-name="{{item}}"></image>
         </view>
         <view class="active-right">
-          <text>{{item.username}}更新了视频</text>
+          <view class='tip-content'>
+            <text>{{item.username}}更新了视频</text>
+            <text bindtap="delVideo" data-name="{{item}}" data-index="{{idx}}" wx:if="{{item.userid == userid}}">删除视频</text>
+          </view>
+          
           <view class="active-content active-content-video">
             <video binderror="listenerVideo" src="{{ videoprefix + item.video_path }}" data-name="{{item}}"></video>
           </view>
@@ -115,5 +129,8 @@
   <view class="group-bottom" bindtap="showBtnbar"  wx:else>
     <text>发布新内容</text>
   </view>
-  <!-- <canvas style="width: 375px; height: 600px;" canvas-id="rect-canvas-1"></canvas> -->
+  <!-- <view class="canvas-content">
+    <canvas style="width: 375px; height: 600px;" canvas-id="rect-canvas-1"></canvas> 
+  </view> -->
+   
 </view>

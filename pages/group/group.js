@@ -20,7 +20,8 @@ Page({
     activelist: [],
     noresult: false,
     ispreview: false,
-    imgtoken: ''
+    imgtoken: '',
+    userid: 0
   },
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
@@ -59,6 +60,15 @@ Page({
       imgprefix: util.config.prefix + 'pic/',
       videoprefix: util.config.videoprefix + 'videos/',
     })
+    wx.getStorage({
+      key: 'userid',
+      success: function (res) {
+        that.setData({
+          userid: res.data
+        });
+      }
+    })
+    
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       console.log(userInfo)
@@ -69,6 +79,106 @@ Page({
 
     })
     
+  },
+  delImage: function(e){
+    console.log(e.currentTarget.dataset);
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: util.config.prefix + 'group/deleteimage',
+            data: {
+              image_id: e.currentTarget.dataset.name.id
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            method: 'GET',
+            success: function (res) {
+              that.data.activelist.splice(e.currentTarget.dataset.index, 1)
+              that.setData({
+                activelist: that.data.activelist
+              })
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  delVideo: function (e) {
+    console.log(e.currentTarget.dataset);
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: util.config.prefix + 'group/deletevideo',
+            data: {
+              video_id: e.currentTarget.dataset.name.id
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            method: 'GET',
+            success: function (res) {
+              that.data.activelist.splice(e.currentTarget.dataset.index, 1)
+              that.setData({
+                activelist: that.data.activelist
+              })
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  delActive: function (e) {
+    console.log(e.currentTarget.dataset);
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: util.config.prefix + 'group/deleteactive',
+            data: {
+              active_id: e.currentTarget.dataset.name.id
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            method: 'GET',
+            success: function (res) {
+              that.data.activelist.splice(e.currentTarget.dataset.index, 1)
+              that.setData({
+                activelist: that.data.activelist
+              })
+            }
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    
+  },
+  goActive: function(e){
+    var item = e.currentTarget.dataset.name;
+    wx.navigateTo({
+      url: '../activedetail/activedetail?activeid=' + item.id
+    })
   },
   showUsers: function(e){
     wx.navigateTo({
